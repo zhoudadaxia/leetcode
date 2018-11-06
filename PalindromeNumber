@@ -1,0 +1,21 @@
+static const auto io_sync_off = []() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    return nullptr;
+}();
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x < 0) return false;
+        int temp = x;
+        int y = 0;
+        int max = INT_MAX;
+        while(x != 0){
+            int pop = x % 10;
+            if(y / 10 > max/10 || y > max - pop) return false;
+            y = y * 10 + pop;
+            x /= 10;
+        }
+        return y == temp;
+    }
+};
